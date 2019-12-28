@@ -5,25 +5,21 @@
 */
 
 #include "FastLED.h"
-#define LED_DATA_PIN 9
-#define NUM_LEDS 250
+#define LED_DATA_PIN 8
+#define NUM_LEDS 30
 CRGB leds[NUM_LEDS];
 
 int onTime = 30*1000; // 30 seconds
-int motion_sensor_left = 10;
-int motion_sensor_right = 11;
-int motion_sensor_front = 12;
+int motion_sensor = 10;
 int fadeTimeDiff = 50;
 
 void setup() {
   FastLED.addLeds<WS2811, LED_DATA_PIN, BRG>(leds, NUM_LEDS);
-  pinMode(motion_sensor_left, INPUT);
-  pinMode(motion_sensor_right, INPUT);
-  pinMode(motion_sensor_front, INPUT);
+  pinMode(motion_sensor, INPUT);
 }
 
 void loop() {
-  if (digitalRead(motion_sensor_left) == 1 || digitalRead(motion_sensor_right) == 1 || digitalRead(motion_sensor_front) == 1) {
+  if (digitalRead(motion_sensor) == 1) {
     fadeIn();
     delay(onTime);
     fadeOut();
