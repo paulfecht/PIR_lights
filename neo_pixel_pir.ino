@@ -82,7 +82,7 @@ void loop(){
     
      if(digitalRead(pirPin) == HIGH){
        digitalWrite(ledPin, HIGH);   //the led visualizes the sensors output pin state
-       colorWipe(strip.Color(255, 255, 255), 10); // Red
+       colorWipe(strip.Color(255, 255, 255), 10); // White
         colorWipe(strip.Color(0, 255, 0), 10); // Green  
 
        if(lockLow){ 
@@ -124,7 +124,7 @@ void loop(){
 void colorWipe(uint32_t c, uint8_t wait) {
   for(uint16_t i=0; i<strip.numPixels(); i++) {
     strip.setPixelColor(i, c);
-   // strip.show();
+    strip.show();
     delay(wait);
   }
     strip.show();
