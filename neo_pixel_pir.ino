@@ -46,6 +46,7 @@ void setup(){
   Serial.begin(9600);
   strip.begin();
   strip.show();
+ 
   
   pinMode(pirPin, INPUT);
   pinMode(ledPin, OUTPUT);
@@ -79,11 +80,12 @@ void setup(){
 //LOOP
 
 void loop(){
-    
+      NeoFade(100);
+     Serial.print(digitalRead(pirPin));
      if(digitalRead(pirPin) == HIGH){
        digitalWrite(ledPin, HIGH);   //the led visualizes the sensors output pin state
        colorWipe(strip.Color(255, 255, 255), 10); // White
-        colorWipe(strip.Color(0, 255, 0), 10); // Green  
+        //colorWipe(strip.Color(0, 255, 0), 10); // Green  
 
        if(lockLow){ 
          //makes sure we wait for a transition to LOW before any further output is made:
@@ -128,4 +130,15 @@ void colorWipe(uint32_t c, uint8_t wait) {
     delay(wait);
   }
     strip.show();
+}
+
+void NeoFade(int FadeSpeed)
+{
+  int fspeed;
+  for (int i = 0; i < NUMPIXELS; i++) { strip.setPixelColor(i, 165, 242, 243); } for (int j = 255; j > 0; j=j-2)
+  {
+    strip.setBrightness(j);
+    strip.show();
+    delay(FadeSpeed);
+  }
 }
