@@ -129,3 +129,5 @@ void colorWipe(uint32_t c, uint8_t wait) {
   }
     strip.show();
 }
+
+//power to the people
